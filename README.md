@@ -2,7 +2,16 @@
 
 ## Project Overview
 
-This is a React application that includes components like a responsive LeftBar for navigation, a CovidChart built using `Chart.js`, and a Contact Management System with card components. The application handles APIs, responsive UI for mobile and larger devices, and data visualizations based on data fetched from external APIs.
+This project is a Contact Management Application built with React and TypeScript, designed to offer a seamless user experience for managing contacts and displaying COVID-19 data. It provides full CRUD operations for managing contacts and features a dashboard for visualizing COVID-19 case statistics. The app is mobile responsive and ensures that users have access to key data regardless of their device.
+
+#### Key Features:
+
+- **Contact Management:** Allows users to create, read, update, and delete contact details.
+- **Dashboard:** Displays global COVID-19 data using line charts and maps.
+- **Charts:** Line charts are rendered using react-chartjs-2 to visualize the historical COVID case data.
+- **Maps:** Interactive world map powered by react-leaflet, showing country-wise COVID case statistics.
+- **API Data Handling:** Uses TanStack Query to manage and fetch data from APIs efficiently.
+- **Mobile Responsiveness:** The application is designed to be fully responsive, working across all screen sizes, from mobile devices to desktop browsers.
 
 ## Table of Contents
 
