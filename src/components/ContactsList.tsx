@@ -53,7 +53,7 @@ const ContactList: React.FC = () => {
         Contacts List
       </Text>
       <ColumnContainer className=" border-2 border-gray border-solid h-[560px] w-full overflow-y-scroll scroll-smooth rounded ">
-        <div className=" grid-cols-1 md:grid-cols-1 lg:grid-colsgrid-2 xl:grid-cols-3 gap-12 mx-5 my-5">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 mx-5 my-5">
           {/* Edit Contact Modal */}
           <ModalComponent
             isEdit={true}
@@ -86,20 +86,15 @@ const ContactList: React.FC = () => {
           </Modal>
 
           {/* Listing Contacts */}
-          {contacts.map(
-            (contact, index) => (
-              console.log(contacts),
-              (
-                <ContactCard
-                  key={index}
-                  contact={contact}
-                  onEdit={handleEdit}
-                  onDelete={handleDelete}
-                  onView={handleView}
-                />
-              )
-            )
-          )}
+          {contacts.map((contact, index) => (
+            <ContactCard
+              key={index}
+              contact={contact}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onView={handleView}
+            />
+          ))}
         </div>
         {/* If No Contacts found scenario */}
         {contacts.length == 0 && (

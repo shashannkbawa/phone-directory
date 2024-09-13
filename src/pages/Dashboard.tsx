@@ -29,7 +29,7 @@ const DashboardPage: React.FC = () => {
         <RowContainer className="gap-1 mt-5">
           {casesNumberInDigits.map((num: number) => {
             return (
-              <ColumnContainer className=" justify-center items-center h-12 w-8 border-solid border-2 border-gray-600 bg-gray-800 rounded">
+              <ColumnContainer className="  justify-center items-center h-12 w-8 border-solid border-2 border-gray-600 bg-gray-800 rounded">
                 <Text type="paragraph" className="font-bold text-white">
                   {num || 0}
                 </Text>
