@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RowContainer from "./Containers/Row.Container";
 import ModalComponent from "./Modal";
-import Text from "./Text";
+import Text from "./Typography/Text";
 
 // Add contact area Component
 const AddContactForm: React.FC = () => {

@@ -1,7 +1,7 @@
 import React from "react";
-import { Contact } from "../redux/ContactsSlice";
-import ColumnContainer from "./Containers/Column.Container";
-import RowContainer from "./Containers/Row.Container";
+import { Contact } from "../../redux/ContactsSlice";
+import ColumnContainer from "../Containers/Column.Container";
+import RowContainer from "../Containers/Row.Container";
 
 // import
 // interface Contact {
@@ -25,7 +25,8 @@ const ContactCard: React.FC<ContactCardProps> = ({
   onDelete,
 }) => {
   return (
-    <ColumnContainer className=" relative max-w-sm w-full lg:max-w-full lg:flex items-center shadow-md rounded-lg border border-gray-200 p-4 mb-4 border-solid border-1 boder-[#D8BFD8]">
+    //max-w-sm
+    <ColumnContainer className="relative  w-full lg:max-w-full lg:flex items-center shadow-md rounded-lg border border-gray-200 p-4 mb-4 border-solid border-1 boder-[#D8BFD8]">
       <img src="./user_image.png" className="h-[150px] w-[150px] mt-5 " />
       <div className="w-full ">
         {/* Contact Name */}
@@ -55,7 +56,7 @@ const ContactCard: React.FC<ContactCardProps> = ({
         </RowContainer>
 
         {/* Action Buttons */}
-        <div className="mt-4 flex justify-end space-x-2">
+        <div className="mt-4 flex  lg:w-full justify-end space-x-2">
           <button
             onClick={() => onView(contact)}
             className="px-4 py-2 bg-white text-gray border-2 border-blue rounded-md hover:bg-gray-100"

@@ -1,4 +1,5 @@
-import { useQuery } from 'react-query';
+import { useQuery } from "react-query";
+import { API_BASE_URL } from "../api/BaseURL";
 
 // TYPES
 interface GlobalData {
@@ -31,18 +32,18 @@ interface HistoricalData {
 
 // Fetching worldwide data
 const fetchGlobalData = async (): Promise<GlobalData> => {
-  const response = await fetch('https://disease.sh/v3/covid-19/all');
+  const response = await fetch(`${API_BASE_URL}/covid-19/all`);
   if (!response.ok) {
-    throw new Error('Error fetching global data');
+    throw new Error("Error fetching global data");
   }
   return response.json();
 };
 
 // Fetching country-specific data
 const fetchCountryData = async (): Promise<CountryData[]> => {
-  const response = await fetch('https://disease.sh/v3/covid-19/countries');
+  const response = await fetch(`${API_BASE_URL}/covid-19/countries`);
   if (!response.ok) {
-    throw new Error('Error fetching country data');
+    throw new Error("Error fetching country data");
   }
   return response.json();
 };
@@ -50,10 +51,10 @@ const fetchCountryData = async (): Promise<CountryData[]> => {
 // Fetching historical data (for the chart)
 const fetchHistoricalData = async (): Promise<HistoricalData> => {
   const response = await fetch(
-    'https://disease.sh/v3/covid-19/historical/all?lastdays=all'
+    `${API_BASE_URL}/covid-19/historical/all?lastdays=all`
   );
   if (!response.ok) {
-    throw new Error('Error fetching historical data');
+    throw new Error("Error fetching historical data");
   }
   return response.json();
 };
@@ -64,8 +65,8 @@ export const useCovidData = () => {
     data: globalData,
     isLoading: isLoadingGlobal,
     isError: isErrorGlobal,
-  } =  useQuery<GlobalData, Error>({
-    queryKey: ['globalData'],
+  } = useQuery<GlobalData, Error>({
+    queryKey: ["globalData"],
     queryFn: fetchGlobalData,
   });
 
@@ -75,8 +76,9 @@ export const useCovidData = () => {
     isLoading: isLoadingCountries,
     isError: isErrorCountries,
   } = useQuery<CountryData[], Error>({
-    queryKey: ['countryData'], 
-    queryFn: fetchCountryData});
+    queryKey: ["countryData"],
+    queryFn: fetchCountryData,
+  });
 
   // To Fetch historical data (for graph)
   const {
@@ -84,9 +86,9 @@ export const useCovidData = () => {
     isLoading: isLoadingHistorical,
     isError: isErrorHistorical,
   } = useQuery<HistoricalData, Error>({
-    queryKey:['historicalData'], 
-    queryFn: fetchHistoricalData
-});
+    queryKey: ["historicalData"],
+    queryFn: fetchHistoricalData,
+  });
 
   return {
     globalData,

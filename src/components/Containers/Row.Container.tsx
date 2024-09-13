@@ -12,9 +12,7 @@ const RowContainer: React.FC<RowContainerProps> = ({
   className = "",
   gap = "4",
 }) => {
-  return (
-    <div className={`flex flex-row gap-${gap} ${className}`}>{children}</div>
-  );
+  return <div className={`flex flex-row ${className}`}>{children}</div>;
 };
 
 export default RowContainer;

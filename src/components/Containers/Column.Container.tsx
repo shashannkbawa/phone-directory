@@ -7,15 +7,12 @@ interface ColumnContainerProps {
 }
 
 // Component for flexing childer in column-wise direction
-// TODO: Need to test gap functionality
 const ColumnContainer: React.FC<ColumnContainerProps> = ({
   children,
   className = "",
   gap = "4",
 }) => {
-  return (
-    <div className={`flex flex-col gap-y-${gap} ${className}`}>{children}</div>
-  );
+  return <div className={`flex flex-col ${className}`}>{children}</div>;
 };
 
 export default ColumnContainer;

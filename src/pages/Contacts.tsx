@@ -3,7 +3,7 @@ import ContactList from "../components/ContactsList";
 import ColumnContainer from "../components/Containers/Column.Container";
 import RowContainer from "../components/Containers/Row.Container";
 import AddContactForm from "../components/CreateContactFrom";
-import Text from "../components/Text";
+import Text from "../components/Typography/Text";
 
 const ContactsPage: React.FC = () => {
   return (

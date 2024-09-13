@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteContact, selectedContact } from "../redux/ContactsSlice";
 import { closeModal, openModal } from "../redux/ModalSlice";
 import { RootState } from "../redux/store";
-import ContactCard from "./Card";
+import ContactCard from "./Cards/ContactCard";
 import ColumnContainer from "./Containers/Column.Container";
 import ModalComponent from "./Modal";
-import Text from "./Text";
+import Text from "./Typography/Text";
 
 //Component for displaying contact list in grid view
 //
@@ -53,7 +53,7 @@ const ContactList: React.FC = () => {
         Contacts List
       </Text>
       <ColumnContainer className=" border-2 border-gray border-solid h-[560px] w-full overflow-y-scroll scroll-smooth rounded ">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mx-5 my-5">
+        <div className=" grid-cols-1 md:grid-cols-1 lg:grid-colsgrid-2 xl:grid-cols-3 gap-12 mx-5 my-5">
           {/* Edit Contact Modal */}
           <ModalComponent
             isEdit={true}
@@ -108,7 +108,10 @@ const ContactList: React.FC = () => {
             <Text type="heading" className=" text-gray-700">
               Sorry
             </Text>
-            <Text type="paragraph" className="font-semibold mt-5 text-gray-700">
+            <Text
+              type="paragraph"
+              className="text-center font-semibold mt-5 text-gray-700"
+            >
               We couldn't find any Contacts. Start by creating new contacts
             </Text>
           </ColumnContainer>

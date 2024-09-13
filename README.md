@@ -1,46 +1,172 @@
-# Getting Started with Create React App
+# Contact Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+This is a React application that includes components like a responsive LeftBar for navigation, a CovidChart built using `Chart.js`, and a Contact Management System with card components. The application handles APIs, responsive UI for mobile and larger devices, and data visualizations based on data fetched from external APIs.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [API Endpoints](#api-endpoints)
+- [Development Notes](#development-notes)
+- [Tech Stack](#tech-stack)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. **Clone the repository:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   git clone https://github.com/shashannkbawa/phone-directory.git
+   ```
 
-### `npm run build`
+2. **Navigate into the project directory:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   cd phone-directory
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Install the dependencies:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   Ensure you have Node.js installed (version 18+ recommended).
 
-### `npm run eject`
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. **Set up environment variables:**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   Create a `.env` file in the root directory:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ```bash
+   REACT_APP_API_URL = https://disease.sh/v3
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## Running the Application
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### For Local Development:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Start the React application:**
+
+   ```bash
+   npm start
+   ```
+
+   The application will be accessible at:
+
+   ```
+   http://localhost:3000
+   ```
+
+2. **Production Build:**
+
+   To create a production build, use:
+
+   ```bash
+   npm run build
+   ```
+
+---
+
+## API Endpoints
+
+This application interacts with several APIs for fetching Covid-19 data. And provide a visual representation of data in charts and maps.
+
+### Covid-19 API for Global Data (Public API)
+
+The CovidChart component fetches historical Covid-19 case data from the following endpoint:
+
+- **Endpoint:** `https://disease.sh/v3/covid-19/all`
+- **Method:** `GET`
+- **Data Used:**
+  - `cases`
+  - `deaths`
+  - `recovered`
+  - `active`
+
+### Covid-19 API for Chart (Public API)
+
+The CovidChart component fetches historical Covid-19 case data from the following endpoint:
+
+- **Endpoint:** `https://disease.sh/v3/covid-19/historical/all?lastdays=all`
+- **Method:** `GET`
+- **Data Used:**
+  - `cases`
+  - `deaths`
+  - `recovered`
+
+### Covid-19 API for Map (Public API)
+
+The CovidChart component fetches historical Covid-19 case data from the following endpoint:
+
+- **Endpoint:** `https://disease.sh/v3/covid-19/countries`
+- **Method:** `GET`
+- **Data Used:**
+  - `country`
+  - `countryInfo`
+  - `cases`
+  - `deaths`
+  - `recovered`
+  - `active`
+
+---
+
+## Contacts State
+
+The application manages contacts data via a Redux store, which allows users to create, view, edit, and delete contacts.
+
+- **Reducer:** `contacts`
+- **State:**
+  - `contacts` - Contains list of all contacts created'
+  - `selectedContact` - Contains the selected contact data
+- **Actions:**
+  - `selectedContact` - Stores the information of contact selected for edit/view.
+  - `addContact` - Adds a new contact to the list.
+  - `updateContact` - Updates an existing contact.
+  - `deleteContact` - Deletes a contact by ID.
+
+---
+
+## Development Notes
+
+- **Responsive Design:** The LeftBar is fixed on laptop screens but hidden on mobile devices, where it can be toggled with a hamburger icon. The content area will occupy the full width on mobile when the LeftBar is hidden.
+- **Chart Configuration:** The `CovidChart` component dynamically scales based on screen size and uses `Chart.js` to render historical data.
+- **Map Information:** The `CovidMap` component initailly zoomed to country coordinates, and clicking on markers pops up a popup containing information regarding the selected country covid data.
+- **State Management:** The app uses `Redux` for global state management, integrating slices (e.g., `ContactsSlice`, `ModalSlice`) by a `useSelector` call.
+- **API calls** The app uses `TanstackQuery` for API calls, integrated with react hooks.
+
+---
+
+## Tech Stack
+
+- **React.js**: Frontend framework for building the user interface.
+- **TypeScript**: Strongly typed JavaScript for improved code quality.
+- **Redux**: State management.
+- **Chart.js**: Library for rendering responsive charts in the `CovidChart` component.
+- **React Leaflet**: Library for rendering Map in the `CovidMap` component.
+- **Tailwind CSS**: Utility-first CSS framework for styling and responsive design.
+
+---
+
+## Contributing
+
+1. Fork the repository.
+2. Create your feature branch: `git checkout -b feature/my-feature`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin feature/my-feature`
+5. Open a pull request.
+
+---
+
+## Contact
+
+For any questions or issues, feel free to contact the project maintainers at:
+
+- Email: shashanksharma092002@gmail.com
+- GitHub: [shashannkbawa](https://github.com/shashannkbawa)
+
+---

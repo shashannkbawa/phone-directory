@@ -5,7 +5,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useCovidData } from "../hooks/useCovidData";
 import ColumnContainer from "./Containers/Column.Container";
 import RowContainer from "./Containers/Row.Container";
-import Text from "./Text";
+import Text from "./Typography/Text";
 
 // Setting up the marker icons manually
 L.Icon.Default.mergeOptions({
@@ -25,14 +25,7 @@ const HoverableMarker: React.FC<any> = ({ country, position }) => {
   // };
 
   return (
-    <Marker
-      position={position}
-      // icon={customIcon}
-      // eventHandlers={{
-      //   mouseover: handleMouseOver,
-      //   // mouseout: handleMouseOut,
-      // }}
-    >
+    <Marker position={position}>
       {/* Pop up for cases details on button click */}
       <Popup ref={popupRef} autoPan={true} closeButton={false}>
         <ColumnContainer gap="1" className="w-[300px] h-full items-center">
@@ -92,7 +85,7 @@ const CovidMap: React.FC = () => {
       <MapContainer
         center={[23.25, 77.41]} // Lat lng of Bhopal
         zoom={5} // Country level zoom factor
-        style={{ height: "700px", width: "100%" }} //TODO: Check responsiveness
+        style={{ height: "700px", width: "100%", zIndex: 0 }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

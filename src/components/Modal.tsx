@@ -3,7 +3,9 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { addContact, updateContact } from "../redux/ContactsSlice";
 import { RootState } from "../redux/store";
-import Text from "./Text";
+import { areStringsTruthy } from "../utils";
+import ColumnContainer from "./Containers/Column.Container";
+import Text from "./Typography/Text";
 
 // To bind modal to the app element
 Modal.setAppElement("#root");
@@ -25,6 +27,8 @@ const ModalComponent: React.FC<ModalProps> = ({
   const [lastName, setLastName] = useState("");
   const [status, setStatus] = useState("active");
 
+  const [isError, setIsError] = useState(false);
+
   // Which of the contact is selected in contacts list
   const contactData = useSelector(
     (state: RootState) => state.contacts.selectedContact
@@ -44,6 +48,11 @@ const ModalComponent: React.FC<ModalProps> = ({
   // Submit handler
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    //To check if the contact has valid values
+    if (!areStringsTruthy(firstName, lastName)) {
+      setIsError(true);
+      return;
+    }
     if (isEdit) {
       dispatch(updateContact({ id, firstName, lastName, status }));
     } else {
@@ -53,6 +62,7 @@ const ModalComponent: React.FC<ModalProps> = ({
     setFirstName("");
     setLastName("");
     setStatus("active");
+    setIsError(false);
     handleClose();
   };
 
@@ -60,8 +70,14 @@ const ModalComponent: React.FC<ModalProps> = ({
     <div className=" absolute h-screen flex justify-center items-center ">
       <Modal
         isOpen={isOpen}
-        onRequestClose={handleClose}
-        className="bg-white p-6 rounded-md shadow-lg w-1/2 mx-auto"
+        onRequestClose={() => {
+          setIsError(false);
+          setFirstName("");
+          setLastName("");
+          setStatus("active");
+          handleClose();
+        }}
+        className="bg-white p-6 rounded-md shadow-lg md: w-3/4   lg:mx-auto md:w-1/2 lg:w-1/2 mx-auto"
         overlayClassName="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center"
       >
         <h2 className="text-3xl mb-1 font-bold">
@@ -144,12 +160,21 @@ const ModalComponent: React.FC<ModalProps> = ({
         </div>
 
         {/* Close Button */}
-        <button
-          onClick={handleSubmit}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md"
-        >
-          {isEdit ? "Save" : "Create New Contact"}
-        </button>
+        <ColumnContainer className="items-start justify-center">
+          {isError ? (
+            <Text type="label" className="text-red-700">
+              Please enter the full name
+            </Text>
+          ) : (
+            <></>
+          )}
+          <button
+            onClick={handleSubmit}
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md"
+          >
+            {isEdit ? "Save" : "Create New Contact"}
+          </button>
+        </ColumnContainer>
       </Modal>
     </div>
   );
