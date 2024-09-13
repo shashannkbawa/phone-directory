@@ -31,7 +31,7 @@ const DashboardPage: React.FC = () => {
             return (
               <ColumnContainer className=" justify-center items-center h-12 w-8 border-solid border-2 border-gray-600 bg-gray-800 rounded">
                 <Text type="paragraph" className="font-bold text-white">
-                  {num}
+                  {num || 0}
                 </Text>
               </ColumnContainer>
             );
